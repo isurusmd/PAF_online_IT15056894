@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/slick.min.js"></script>
+    <script src="js/nouislider.min.js"></script>
+    <script src="js/jquery.zoom.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <title>Online App</title>
+
+</head>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-23581568-13');
+    var SERVER_URL = "http://localhost:8000";
+    $(document).ready(function () {
+        var ajaxConfig = {
+            method: "GET",
+            url:SERVER_URL + "/api/v1/User",
+            async: true
+        };
+
+        $("#image_course").append(html);
+        $("#image_course li").off("click");
+        $("#image_course li").click(function(){
+            $("#image_course li").removeClass("active");
+            $(this).addClass("active");
+            let x = $(this).find("p").text();
+            console.log(x);
+            var ajaxConfig = {
+                method: "GET",
+                url:SERVER_URL + "/api/v1/admin/"+$(this).find("p").text(),
+                async: true
+            };
+
+            $("#image_course").append(html);
+            $("#image_course li").off("click");
+            $("#image_course li").click(function(){
+                $("#image_course li").removeClass("active");
+                $(this).addClass("active");
+                let x = $(this).find("p").text();
+                console.log(x);
+                var ajaxConfig = {
+                    method: "GET",
+                    url:SERVER_URL + "/api/v1/customer/"+$(this).find("p").text(),
+                    async: true
+                };
+
+
+                $.ajax(ajaxConfig).done(function(User){
+                    userID = 'User';
+                    $("#user_session").text(userID);
+                    $("#login").show();
+                    $("#logout").hide();
+                    console.log(userID);
+                    alert("Log Out");
+                }).fail(function(jxhr,statusText,error){
+                    alert("Unable to save, try again");
+                    console.log(error);
+                });
+
+                $("#logout").click(function(){
+                    var ajaxConfig = {
+                        method: "POST",
+                        url:SERVER_URL + "/api/v1/user",
+                        async: true
+                    };
+
+
+            <body>
+
+</body>
+</html>
